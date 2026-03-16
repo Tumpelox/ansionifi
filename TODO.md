@@ -1,0 +1,5 @@
+- [ ] Teemavärin valitsin
+	- [x] Kytkin värin valinnalle
+	- [ ] Erikseen canvakselle?
+- [x] Tekstieditorin värien korjaus
+- [ ] Painikkeiden asettelun korjaus tyhjässä editorissa
