@@ -83,7 +83,7 @@
 .carta-theme__ansiosi .carta-input,
 .carta-theme__ansiosi .carta-renderer {
 	height: auto;
-  min-height: calc(var(--text-sm) * 10);
+  min-height: calc(var(--text-sm) * 15);
 	overflow-y: auto;
 }
 

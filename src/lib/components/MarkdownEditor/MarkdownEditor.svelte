@@ -10,7 +10,7 @@
 	});
 </script>
 
-<div class="overflow-hidden rounded-md border bg-background">
+<div class="overflow-hidden rounded-md border bg-white">
 	<MarkdownEditor theme="ansiosi" {carta} bind:value {placeholder} />
 </div>
 
