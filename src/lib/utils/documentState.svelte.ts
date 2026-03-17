@@ -120,11 +120,11 @@ export const listenPrint = (mainNode: HTMLElement) => {
 						const { top: parentTop, bottom: parentBottom } = calculateNodePosition(parent);
 
 						// parent.style.backgroundColor = 'red';
-						parent.style.marginTop = `calc(var(--spacing) * 4 + ${1122 - parentTop}px)`;
+						parent.style.marginTop = `calc(var(--spacing) * 4 + ${1122 * startPage - parentTop}px)`;
 						modifiedElements.add(parent);
 					} else {
 						// node.style.backgroundColor = 'red';
-						node.style.marginTop = `calc(var(--spacing) * 4 + ${1122 - top}px)`;
+						node.style.marginTop = `calc(var(--spacing) * 4 + ${1122 * startPage - top}px)`;
 						modifiedElements.add(node);
 					}
 				}
