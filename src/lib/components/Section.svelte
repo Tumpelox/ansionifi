@@ -92,7 +92,7 @@
 
 	function handleEdit(id: string) {
 		isEditing = true;
-		editData = ({...getItem(id)} as CVMap[K]) ?? initializeEditor();
+		editData = { ...((getItem(id) as CVMap[K]) ?? initializeEditor()) };
 		open = true;
 	}
 
