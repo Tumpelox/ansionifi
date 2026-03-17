@@ -1,12 +1,8 @@
 import { ContainerKey } from '$lib/types/cv';
 import { SvelteMap } from 'svelte/reactivity';
 
-// Reactive map to hold dimensions/positions of all tracked elements
-// Key: HTMLElement, Value: { top: number, bottom: number, height: number }
 export const trackedElements: SvelteMap<HTMLElement, string | null> = new SvelteMap();
 
-// Define your PDF page height in pixels (e.g., A4 at 96 DPI is approx 1122px)
-// This is a $state so if it changes, all derivations update automatically.
 export let printConfig = $state({
 	pageHeight: 1122
 });
@@ -52,9 +48,6 @@ const calculateNodePosition = (node: HTMLElement) => {
 	const containerRect = documentContainer.getBoundingClientRect();
 	const nodeRect = node.getBoundingClientRect();
 
-	// 1. (nodeRect.top - containerRect.top): Kertoo kuinka kaukana elementti on kontin NÄKYVÄSTÄ yläreunasta
-	// 2. + documentContainer.scrollTop: Lisätään kontin oma vierityksen määrä, jotta saadaan todellinen
-	//    absoluuttinen sijainti #document -elementin sisällä.
 	const top = nodeRect.top - containerRect.top;
 	const height = nodeRect.height;
 	const bottom = top + height;
@@ -65,8 +58,10 @@ const calculateNodePosition = (node: HTMLElement) => {
 export const listenPrint = (mainNode: HTMLElement) => {
 	const modifiedElements = new Set<HTMLElement>();
 
-	const watermark = document.createElement('span');
+	const watermark = document.createElement('a');
 	watermark.id = 'watermark';
+	watermark.href = 'https://ansioni.fi';
+	watermark.target = '_blank';
 	watermark.classList.add(
 		'absolute',
 		'text-primary',
