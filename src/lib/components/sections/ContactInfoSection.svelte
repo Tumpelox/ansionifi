@@ -4,7 +4,7 @@
 	import { SectionKey, SectionLabels } from '$lib/types/cv';
 	import Section from '$lib/components/Section.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Linkedin, Link, Phone, Mail, Calendar } from '@steeze-ui/lucide-icons';
+	import { Linkedin, Link, Phone, Mail, Calendar, Github } from '@steeze-ui/lucide-icons';
 
 	const initializeEditor = () => ({
 		id: crypto.randomUUID(),
@@ -15,11 +15,17 @@
 		address: '',
 		birthday: '',
 		linkedin: '',
+		github: '',
 		website: ''
 	});
 
 	const parseLinkedInUsername = (url: string) => {
 		const regex = /linkedin\.com\/in\/([a-zA-Z0-9_-]+)/;
+		return url.match(regex)?.[1] || '';
+	};
+
+	const parseGitHubUsername = (url: string) => {
+		const regex = /github\.com\/([a-zA-Z0-9_-]+)/;
 		return url.match(regex)?.[1] || '';
 	};
 </script>
@@ -54,6 +60,12 @@
 					><Icon src={Linkedin} class="size-4" />
 					<a href={item.linkedin} target="_blank" class="text-primary hover:underline"
 						>@{parseLinkedInUsername(item.linkedin)}</a
+					>
+				</span>{/if}
+			{#if item.github}<span class="flex items-center gap-2"
+					><Icon src={Github} class="size-4" />
+					<a href={item.github} target="_blank" class="text-primary hover:underline"
+						>@{parseGitHubUsername(item.github)}</a
 					>
 				</span>{/if}
 			{#if item.website}<span class="flex items-center gap-2"
@@ -96,6 +108,15 @@
 				<Input
 					id="linkedin"
 					bind:value={editData.linkedin}
+					class="col-span-3"
+					placeholder="https://..."
+				/>
+			</div>
+			<div class="grid grid-cols-4 items-center gap-4">
+				<Label for="github" class="text-right">GitHub</Label>
+				<Input
+					id="github"
+					bind:value={editData.github}
 					class="col-span-3"
 					placeholder="https://..."
 				/>

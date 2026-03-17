@@ -7,6 +7,7 @@ export interface ContactInfo {
 	address: string;
 	birthday?: string;
 	linkedin?: string;
+	github?: string;
 	website?: string;
 }
 
