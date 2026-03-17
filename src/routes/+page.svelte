@@ -138,6 +138,15 @@
 		class:dark={darkTheme}
 		class="container mx-auto max-w-[210mm] min-w-[210mm] flex flex-col mt-[calc(var(--spacing)*22)] print:mt-0 relative"
 	>
+		<div class="w-full print:hidden py-2 px-4 bg-card text-card-foreground rounded shadow mb-4">
+			<p>
+				Tervetuloa käyttämään ansioni CV -editoria. Sovellus on aktiivisen kehityksen kohteena,
+				joten siinä voi esiintyä virheitä ja puutteita sekä osa tiedosta voi kadota päivitysten
+				myötä. Pyrimme kuitenkin välttämään tälläisiä muutoksia. Tietosi pysyvät tallessa
+				laitteellasi, joten voit jatkaa siitä, mihin jäit. Voit myös varmuuskopioida tietosi
+				painamalla "Lataa" -painiketta.
+			</p>
+		</div>
 		<div
 			id={ContainerKey.DOCUMENT}
 			class="relative grid grid-cols-6 min-h-[297mm] grow mb-16 print:mb-0"
