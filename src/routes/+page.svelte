@@ -87,7 +87,7 @@
 </svelte:head>
 
 <div
-	class="min-h-screen bg-white/50 dark:bg-black/50 font-sans text-foreground print:bg-background print:text-foreground relative overflow-x-auto print:overflow-x-hidden"
+	class="min-h-screen bg-white/20 dark:bg-black/60 font-sans text-foreground print:bg-background print:text-foreground relative overflow-x-auto print:overflow-x-hidden"
 >
 	<!-- Top Navigation Navbar -->
 	<header

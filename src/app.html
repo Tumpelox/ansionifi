@@ -5,7 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<body
+		data-sveltekit-preload-data="hover"
+		class="bg-radial-[circle_at_bottom_left] print:bg-none from-primary/60 via-accent/60 via-50% to-secondary/60 bg-fixed"
+	>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
