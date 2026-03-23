@@ -12,7 +12,7 @@
 </script>
 
 <div
-	class="absolute bottom-0 right-0 py-1 px-4 flex flex-row gap-2 justify-end opacity-0 transition-opacity group-hover/item:opacity-100 print:hidden"
+	class="absolute bottom-0 right-0 py-1 px-4 flex flex-row gap-2 justify-end md:opacity-0 transition-opacity group-hover/item:opacity-100 print:hidden"
 >
 	<Button variant="ghost" class="backdrop-blur-md" size="icon-sm" onclick={() => handleEdit(id)}>
 		<Icon src={PencilSquare} class="size-3" />

@@ -152,7 +152,7 @@
 	{/if}
 
 	<div
-		class="absolute top-0 right-2 flex gap-2 group-hover:opacity-100 opacity-0 transition-opacity"
+		class="absolute top-0 right-2 flex gap-2 group-hover:opacity-100 md:opacity-0 transition-opacity"
 	>
 		{#if !multiple && section && section.content.length > 0}
 			<Button
