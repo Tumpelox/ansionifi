@@ -88,11 +88,11 @@
 </svelte:head>
 
 <div
-	class="min-h-screen bg-white/20 dark:bg-black/60 font-sans text-foreground print:bg-background print:text-foreground relative overflow-x-auto print:overflow-x-hidden"
+	class="min-h-screen bg-white/20 dark:bg-black/60 font-sans text-foreground print:bg-background print:text-foreground relative overflow-x-auto print:overflow-x-hidden px-2 md:px-4"
 >
 	<!-- Top Navigation Navbar -->
 	<header
-		class=" container scheme-dark mx-auto fixed top-6 right-1/2 translate-x-1/2 z-40 w-[calc(100%-1rem)] md:w-[calc(100%-2rem)] h-fit bg-card backdrop-blur-lg shadow-lg print:hidden rounded-2xl"
+		class="container scheme-dark mx-auto fixed top-6 right-1/2 translate-x-1/2 z-40 w-[calc(100%-var(--spacing)*4)] md:w-[calc(100%-var(--spacing)*8)] h-fit bg-card shadow-lg print:hidden rounded-2xl"
 	>
 		<div class="flex items-center justify-between px-4 py-2">
 			<div class="flex items-center gap-2">
