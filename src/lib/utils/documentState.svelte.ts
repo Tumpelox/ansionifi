@@ -76,6 +76,7 @@ export const listenPrint = (mainNode: HTMLElement) => {
 
 	const startPrint = () => {
 		mainNode.style.minWidth = '210mm';
+		mainNode.style.maxWidth = '210mm';
 
 		const nodes = new Map<HTMLElement, { parentId: string | null }>();
 		const documentContainer = document.getElementById(ContainerKey.DOCUMENT);
@@ -151,6 +152,7 @@ export const listenPrint = (mainNode: HTMLElement) => {
 
 		mainNode.style.minHeight = '';
 		mainNode.style.minWidth = '';
+		mainNode.style.maxWidth = '';
 		mainNode.removeChild(watermark);
 	};
 

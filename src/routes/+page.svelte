@@ -22,6 +22,7 @@
 	import { listenPrint } from '$lib/utils/documentState.svelte';
 	import { Switch } from '$lib/components/ui/switch';
 	import { Label } from '$lib/components/ui/label';
+	import Logo from '$lib/components/Logo.svelte';
 
 	const { data, setSection, updateSection, reset } = useState();
 
@@ -91,7 +92,7 @@
 >
 	<!-- Top Navigation Navbar -->
 	<header
-		class="max-w-[calc(210mm+2rem)] scheme-dark mx-auto fixed top-4 right-1/2 translate-x-1/2 z-40 w-[calc(100%-1rem)] md:w-[calc(100%-2rem)] h-fit bg-card/50 shadow-lg backdrop-blur print:hidden rounded-2xl"
+		class=" container scheme-dark mx-auto fixed top-6 right-1/2 translate-x-1/2 z-40 w-[calc(100%-1rem)] md:w-[calc(100%-2rem)] h-fit bg-card backdrop-blur-lg shadow-lg print:hidden rounded-2xl"
 	>
 		<div class="flex items-center justify-between px-4 py-2">
 			<div class="flex items-center gap-2">
@@ -101,101 +102,134 @@
 					<Logo class="h-10" />
 				</h1>
 			</div>
-
-			<div class="flex flex-wrap items-center gap-2 md:gap-4">
-				<div class="flex items-center space-x-2">
-					<Switch id="dark-theme" bind:checked={darkTheme} />
-					<Label for="dark-theme">{darkTheme ? 'Vaalea' : 'Tumma'}</Label>
-				</div>
-				<Button variant="destructive" size="sm" onclick={resetCV} title="Tyhjennä CV">
-					<Icon src={Trash} class="h-4 w-4 md:mr-2" />
-					<span class="hidden md:inline">Tyhjennä</span>
-				</Button>
-				<Button
-					variant="default"
-					size="sm"
-					onclick={downloadCV}
-					class="ml-2 gap-2 shadow-sm shadow-primary/20"
-				>
-					<Icon src={ArrowDownTray} class="h-4 w-4" />
-					<span>Lataa</span>
-				</Button>
-				<Button
-					variant="default"
-					size="sm"
-					onclick={printCV}
-					class="ml-2 gap-2 shadow-sm shadow-primary/20"
-				>
-					<Icon src={Printer} class="h-4 w-4" />
-					<span>Tulosta</span>
-				</Button>
-			</div>
+			<p>by 👐🏻 of tuomas tornberg</p>
 		</div>
 	</header>
 
 	<main
-		use:listenPrint
-		class:dark={darkTheme}
-		class="container mx-auto max-w-[210mm] min-w-[210mm] flex flex-col mt-[calc(var(--spacing)*22)] print:mt-0 relative"
+		class="container flex flex-col xl:grid grid-cols-12 gap-4 mx-auto print:block print:mx-0 min-h-screen pt-[calc(var(--spacing)*28)] print:pt-0 col-span-7 mb-16 print:mb-0"
 	>
-		<div class="w-full print:hidden py-2 px-4 bg-card text-card-foreground rounded shadow mb-4">
-			<p>
-				Tervetuloa käyttämään ansioni CV -editoria. Sovellus on aktiivisen kehityksen kohteena,
-				joten siinä voi esiintyä virheitä ja puutteita sekä osa tiedosta voi kadota päivitysten
-				myötä. Pyrimme kuitenkin välttämään tälläisiä muutoksia. Tietosi pysyvät tallessa
-				laitteellasi, joten voit jatkaa siitä, mihin jäit. Voit myös varmuuskopioida tietosi
-				painamalla "Lataa" -painiketta.
-			</p>
-		</div>
-		<div
-			id={ContainerKey.DOCUMENT}
-			class="relative grid grid-cols-6 min-h-[297mm] grow mb-16 print:mb-0"
+		<section
+			use:listenPrint
+			class:dark={darkTheme}
+			class="mx-auto print:mx-0 print:max-w-[210mm] print:min-w-[210mm] print:max-w-[210mm] w-full flex flex-col relative order-2 xl:order-1 col-span-9 2xl:col-span-8 bg-background rounded-md print:rounded-none shadow-lg print:shadow-none"
 		>
 			<div
-				// use:droppable={{ container: ContainerKey.SIDEBAR, callbacks: { onDrop: handleDrop } }}
-				class="relative col-span-2 grow bg-card text-card-foreground pb-16 print:pb-0"
+				id={ContainerKey.DOCUMENT}
+				class="relative flex flex-col md:grid print:grid grid-cols-6 min-h-[297mm] grow print:mb-0"
 			>
-				<div id="sidebar" class="flex flex-col gap-6 py-4">
-					<h2 class="hidden absolute">Perustiedot</h2>
-					<ProfilePicture />
-					<ContactInfoSection />
-					<EducationSection />
-					<LanguagesSection />
-					{#if sidebarSections.includes(SectionKey.ADDITIONAL_TRAINING)}
-						<AdditionalTrainingSection />
+				<div
+					// use:droppable={{ container: ContainerKey.SIDEBAR, callbacks: { onDrop: handleDrop } }}
+					class="relative col-span-2 grow bg-card text-card-foreground pb-16 print:pb-0 rounded-l-md print:rounded-none"
+				>
+					<div id="sidebar" class="flex flex-col gap-6 py-4">
+						<h2 class="hidden absolute">Perustiedot</h2>
+						<ProfilePicture />
+						<ContactInfoSection />
+						<EducationSection />
+						<LanguagesSection />
+						{#if sidebarSections.includes(SectionKey.ADDITIONAL_TRAINING)}
+							<AdditionalTrainingSection />
+						{/if}
+						{#if mainSections.includes(SectionKey.OTHER_INFO)}<OtherInfoSection />{/if}
+					</div>
+				</div>
+
+				<div
+					id="main"
+					// use:droppable={{ container: ContainerKey.MAIN, callbacks: { onDrop: handleDrop } }}
+					class="col-span-4 flex flex-col gap-6 text-foreground py-4 pb-16 print:pb-0 rounded-r-md print:rounded-none"
+				>
+					<h2 class="hidden absolute">Minusta</h2>
+					<ProfileSection />
+					<WorkExperienceSection />
+					{#if mainSections.includes(SectionKey.VOLUNTEER_WORK)}<VolunteerWorkSection />{/if}
+					{#if mainSections.includes(SectionKey.GOALS)}<GoalsSection />{/if}
+					{#if sidebarSections.includes(SectionKey.REFERENCES)}
+						<ReferencesSection />
 					{/if}
-					{#if mainSections.includes(SectionKey.OTHER_INFO)}<OtherInfoSection />{/if}
+					{#if sidebarSections.includes(SectionKey.SKILLS)}
+						<ITSkillsSection />
+					{/if}
+				</div>
+			</div>
+			<div class="absolute bottom-[calc(var(--spacing)*4)] w-full flex justify-center print:hidden">
+				<Button
+					variant="outline"
+					onclick={() => (isAddSectionDialogOpen = true)}
+					class="border-2 border-dashed text-muted-foreground hover:border-primary/50 hover:text-foreground"
+				>
+					<Icon src={Plus} class="mr-2 h-4 w-4" />
+					Lisää osio...
+				</Button>
+			</div>
+		</section>
+		<section class="flex flex-col gap-4 col-span-3 2xl:col-span-4 order-1 xl:order-2 print:hidden">
+			<div class="flex flex-col gap-4 py-2 px-4 bg-card text-card-foreground rounded-md shadow">
+				<h2>Tervetuloa käyttämään ansioni CV -editoria</h2>
+				<p>
+					Ohjelman käyttö on täysin anonyymiä ja kaikki tietosi pysyvät vain laitteellasi. Tekemäsi
+					työ tallentuu laitteen muistiin, joten voit jatkaa siitä, mihin jäit. Voit myös
+					varmuuskopioida tietosi painamalla "Lataa" -painiketta.
+				</p>
+				<p>
+					Kaikki sovelluksen toiminnot kuten PDF tulostus ei välttämättä toimi oikein kännykällä.
+				</p>
+				<h3>Asetukset</h3>
+				<div class="flex gap-4 flex-wrap items-center justify-between">
+					<div class="flex items-center space-x-2">
+						<Switch id="dark-theme" bind:checked={darkTheme} />
+						<Label for="dark-theme">{darkTheme ? 'Vaalea teema' : 'Tumma teema'}</Label>
+					</div>
+					<Button
+						variant="secondary"
+						size="sm"
+						onclick={downloadCV}
+						class="ml-2 gap-2 shadow-sm shadow-primary/20"
+					>
+						<Icon src={ArrowDownTray} class="h-4 w-4" />
+						<span>Lataa tiedot</span>
+					</Button>
+					<Button variant="destructive" size="sm" onclick={resetCV} title="Tyhjennä CV">
+						<Icon src={Trash} class="h-4 w-4 md:mr-2" />
+						<span class="hidden md:inline">Tyhjennä tiedot</span>
+					</Button>
+				</div>
+				<div class="">
+					<Button
+						variant="default"
+						size="sm"
+						onclick={printCV}
+						class="ml-2 gap-2 shadow-sm shadow-primary/20 float-end"
+					>
+						<Icon src={Printer} class="h-4 w-4" />
+						<span>Tulosta</span>
+					</Button>
 				</div>
 			</div>
 
 			<div
-				id="main"
-				// use:droppable={{ container: ContainerKey.MAIN, callbacks: { onDrop: handleDrop } }}
-				class="col-span-4 flex flex-col gap-6 bg-background text-foreground py-4 pb-16 print:pb-0"
+				class="prose max-w-full w-full h-fit print:hidden py-2 px-4 bg-card text-card-foreground rounded-md shadow"
 			>
-				<h2 class="hidden absolute">Minusta</h2>
-				<ProfileSection />
-				<WorkExperienceSection />
-				{#if mainSections.includes(SectionKey.VOLUNTEER_WORK)}<VolunteerWorkSection />{/if}
-				{#if mainSections.includes(SectionKey.GOALS)}<GoalsSection />{/if}
-				{#if sidebarSections.includes(SectionKey.REFERENCES)}
-					<ReferencesSection />
-				{/if}
-				{#if sidebarSections.includes(SectionKey.SKILLS)}
-					<ITSkillsSection />
-				{/if}
+				<h3>Lisätietoja</h3>
+				<p>
+					Sovellus on aktiivisen kehityksen kohteena, joten siinä voi esiintyä virheitä ja puutteita
+					sekä osa tiedosta voi kadota päivitysten myötä. Pyrimme kuitenkin välttämään tälläisiä
+					muutoksia.
+				</p>
+				<p>
+					Kaikki palaute on erittäin tervetullutta, joten jos sinulla on ehdotuksia tai kohtasit
+					ongelmia, älä epäröi ottaa yhteyttä! Voit lähettää viestiä LinkedIn:issä{' '}
+					<a
+						href="https://linkedin.com/in/tuomastornberg"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						@tuomastornberg
+					</a>
+				</p>
 			</div>
-		</div>
-		<div class="absolute bottom-[calc(var(--spacing)*22)] w-full flex justify-center print:hidden">
-			<Button
-				variant="outline"
-				onclick={() => (isAddSectionDialogOpen = true)}
-				class="border-2 border-dashed text-muted-foreground hover:border-primary/50 hover:text-foreground"
-			>
-				<Icon src={Plus} class="mr-2 h-4 w-4" />
-				Lisää osio...
-			</Button>
-		</div>
+		</section>
 	</main>
 </div>
 
