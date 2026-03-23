@@ -98,7 +98,7 @@
 				<h1
 					class="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-xl font-bold text-transparent"
 				>
-					Ansioni
+					<Logo class="h-10" />
 				</h1>
 			</div>
 
