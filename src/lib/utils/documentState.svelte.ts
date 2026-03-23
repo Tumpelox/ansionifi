@@ -75,6 +75,8 @@ export const listenPrint = (mainNode: HTMLElement) => {
 	watermark.style.right = '5px';
 
 	const startPrint = () => {
+		mainNode.classList.add('invisible');
+		mainNode.classList.add('print:visible');
 		mainNode.style.minWidth = '210mm';
 		mainNode.style.maxWidth = '210mm';
 
@@ -153,6 +155,8 @@ export const listenPrint = (mainNode: HTMLElement) => {
 		mainNode.style.minHeight = '';
 		mainNode.style.minWidth = '';
 		mainNode.style.maxWidth = '';
+		mainNode.classList.remove('invisible');
+		mainNode.classList.remove('print:visible');
 		mainNode.removeChild(watermark);
 	};
 
