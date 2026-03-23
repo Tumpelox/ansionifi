@@ -244,7 +244,7 @@
 </Dialog.Root>
 
 <Dialog.Root bind:open={isAddSectionDialogOpen}>
-	<Dialog.Content class="sm:max-w-[425px]">
+	<Dialog.Content>
 		<Dialog.Header>
 			<Dialog.Title>Lisää osio</Dialog.Title>
 			<Dialog.Description>Valitse osio, jonka haluat lisätä CV:hen</Dialog.Description>

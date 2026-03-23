@@ -19,7 +19,7 @@
 </script>
 
 <Dialog.Root bind:open>
-	<Dialog.Content class="h-full md:h-fit md:max-h-[90vh] overflow-y-auto md:max-w-[600px]">
+	<Dialog.Content>
 		<Dialog.Header>
 			<Dialog.Title>{title}</Dialog.Title>
 			{#if description}
