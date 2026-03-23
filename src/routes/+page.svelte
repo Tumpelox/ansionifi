@@ -165,8 +165,10 @@
 			</div>
 		</section>
 		<section class="flex flex-col gap-4 col-span-3 2xl:col-span-4 order-1 xl:order-2 print:hidden">
-			<div class="flex flex-col gap-4 py-2 px-4 bg-card text-card-foreground rounded-md shadow">
-				<h2 class="mt-2 mb-1">Tervetuloa käyttämään ansioni CV -editoria</h2>
+			<div
+				class="flex flex-col gap-4 pt-2 pb-8 px-4 bg-card text-card-foreground rounded-md shadow"
+			>
+				<h2 class="mt-2">Tervetuloa käyttämään ansioni CV -editoria</h2>
 				<p>
 					Ohjelman käyttö on täysin anonyymiä ja kaikki tietosi pysyvät vain laitteellasi. Tekemäsi
 					työ tallentuu laitteen muistiin, joten voit jatkaa siitä, mihin jäit. Voit myös
@@ -178,9 +180,9 @@
 			</div>
 
 			<div
-				class="prose max-w-full w-full h-fit print:hidden py-2 px-4 bg-card text-card-foreground rounded-md shadow"
+				class="prose max-w-full w-full h-fit print:hidden pt-2 pb-8 px-4 bg-card text-card-foreground rounded-md shadow"
 			>
-				<h3 class="mt-2 mb-1 font-bold text-lg">Lisätietoja</h3>
+				<h3 class="mt-2 font-bold text-lg">Lisätietoja</h3>
 				<p>
 					Sovellus on aktiivisen kehityksen kohteena, joten siinä voi esiintyä virheitä ja puutteita
 					sekä osa tiedosta voi kadota päivitysten myötä. Pyrimme kuitenkin välttämään tälläisiä
@@ -199,8 +201,10 @@
 				</p>
 			</div>
 
-			<div class="flex flex-col gap-4 py-2 px-4 bg-card text-card-foreground rounded-md shadow">
-				<h3 class="mt-2 mb-1">Asetukset</h3>
+			<div
+				class="flex flex-col gap-4 pt-2 pb-8 px-4 bg-card text-card-foreground rounded-md shadow"
+			>
+				<h3 class="mt-2">Asetukset</h3>
 				<div class="flex gap-4 flex-wrap items-center justify-between">
 					<div class="flex items-center space-x-2">
 						<Switch id="dark-theme" bind:checked={darkTheme} />
