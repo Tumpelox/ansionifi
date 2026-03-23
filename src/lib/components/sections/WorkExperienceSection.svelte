@@ -37,7 +37,7 @@
 					/>
 				</div>
 				{#if item.employer}
-					<p class="text-sm bg-card/80 py-[0.375rem] px-2 rounded w-fit">
+					<p class="text-sm bg-card/80 py-[0.375rem] px-2 rounded-md w-fit">
 						{item.employer}
 					</p>
 				{/if}
