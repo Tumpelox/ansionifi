@@ -166,7 +166,7 @@
 		</section>
 		<section class="flex flex-col gap-4 col-span-3 2xl:col-span-4 order-1 xl:order-2 print:hidden">
 			<div class="flex flex-col gap-4 py-2 px-4 bg-card text-card-foreground rounded-md shadow">
-				<h2>Tervetuloa käyttämään ansioni CV -editoria</h2>
+				<h2 class="mt-2 mb-1">Tervetuloa käyttämään ansioni CV -editoria</h2>
 				<p>
 					Ohjelman käyttö on täysin anonyymiä ja kaikki tietosi pysyvät vain laitteellasi. Tekemäsi
 					työ tallentuu laitteen muistiin, joten voit jatkaa siitä, mihin jäit. Voit myös
@@ -175,7 +175,32 @@
 				<p>
 					Kaikki sovelluksen toiminnot kuten PDF tulostus ei välttämättä toimi oikein kännykällä.
 				</p>
-				<h3>Asetukset</h3>
+			</div>
+
+			<div
+				class="prose max-w-full w-full h-fit print:hidden py-2 px-4 bg-card text-card-foreground rounded-md shadow"
+			>
+				<h3 class="mt-2 mb-1 font-bold text-lg">Lisätietoja</h3>
+				<p>
+					Sovellus on aktiivisen kehityksen kohteena, joten siinä voi esiintyä virheitä ja puutteita
+					sekä osa tiedosta voi kadota päivitysten myötä. Pyrimme kuitenkin välttämään tälläisiä
+					muutoksia.
+				</p>
+				<p>
+					Kaikki palaute on erittäin tervetullutta, joten jos sinulla on ehdotuksia tai kohtasit
+					ongelmia, älä epäröi ottaa yhteyttä! Voit lähettää viestiä LinkedIn:issä{' '}
+					<a
+						href="https://linkedin.com/in/tuomastornberg"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						@tuomastornberg
+					</a>
+				</p>
+			</div>
+
+			<div class="flex flex-col gap-4 py-2 px-4 bg-card text-card-foreground rounded-md shadow">
+				<h3 class="mt-2 mb-1">Asetukset</h3>
 				<div class="flex gap-4 flex-wrap items-center justify-between">
 					<div class="flex items-center space-x-2">
 						<Switch id="dark-theme" bind:checked={darkTheme} />
@@ -206,28 +231,6 @@
 						<span>Tulosta</span>
 					</Button>
 				</div>
-			</div>
-
-			<div
-				class="prose max-w-full w-full h-fit print:hidden py-2 px-4 bg-card text-card-foreground rounded-md shadow"
-			>
-				<h3>Lisätietoja</h3>
-				<p>
-					Sovellus on aktiivisen kehityksen kohteena, joten siinä voi esiintyä virheitä ja puutteita
-					sekä osa tiedosta voi kadota päivitysten myötä. Pyrimme kuitenkin välttämään tälläisiä
-					muutoksia.
-				</p>
-				<p>
-					Kaikki palaute on erittäin tervetullutta, joten jos sinulla on ehdotuksia tai kohtasit
-					ongelmia, älä epäröi ottaa yhteyttä! Voit lähettää viestiä LinkedIn:issä{' '}
-					<a
-						href="https://linkedin.com/in/tuomastornberg"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						@tuomastornberg
-					</a>
-				</p>
 			</div>
 		</section>
 	</main>
