@@ -49,15 +49,15 @@
 
 	{#snippet editor({ editData, handleSave })}
 		<div class="grid gap-4 py-4">
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="degree" class="text-right">Kurssi tai tutkinto</Label>
 				<Input id="degree" bind:value={editData.degree} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="provider" class="text-right">Järjestäjä</Label>
 				<Input id="provider" bind:value={editData.provider} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="date" class="text-right">Päivämäärä</Label>
 				<Datepicker bind:value={editData.date} class="col-span-3" placeholder="esim 18.6.1996" />
 			</div>

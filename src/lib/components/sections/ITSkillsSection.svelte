@@ -45,11 +45,11 @@
 	{/snippet}
 	{#snippet editor({ editData })}
 		<div class="grid gap-4 py-4">
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="program" class="text-right">Ohjelma</Label>
 				<Input id="program" bind:value={editData.program} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="level" class="text-right">Taso</Label>
 				<Input
 					id="level"

@@ -42,7 +42,7 @@
 	{/snippet}
 	{#snippet editor({ editData })}
 		<div class="grid gap-4 py-4">
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="language" class="text-right">Kieli</Label>
 				<Input
 					id="language"
@@ -51,7 +51,7 @@
 					placeholder="esim. Englanti"
 				/>
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="level" class="text-right">Taso</Label>
 				<Input
 					id="level"
@@ -60,7 +60,7 @@
 					placeholder="esim. Sujuva / B2"
 				/>
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="certificate" class="text-right">Tutkinto</Label>
 				<Input id="certificate" bind:value={editData.certificate} class="col-span-3" />
 			</div>

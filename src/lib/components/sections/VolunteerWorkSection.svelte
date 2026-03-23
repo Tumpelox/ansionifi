@@ -44,11 +44,11 @@
 					</h4>
 				</div>
 
-				<p class="text-sm bg-card/80 py-[0.375rem] px-2 rounded w-full">
+				<p class="text-sm bg-card/80 py-[0.375rem] px-2 rounded-md w-full">
 					{item.organization}
 				</p>
 				<DateString
-					class="bg-card rounded-md px-2 py-[0.375rem] font-mono text-sm tracking-tight whitespace-nowrap text-muted-foreground"
+					class="bg-card rounded-md-md px-2 py-[0.375rem] font-mono text-sm tracking-tight whitespace-nowrap text-muted-foreground"
 					startDate={item.startDate}
 					endDate={item.endDate}
 				/>
@@ -61,15 +61,15 @@
 	{/snippet}
 	{#snippet editor({ editData })}
 		<div class="grid gap-4 py-4">
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="role" class="text-right">Tehtävä</Label>
 				<Input id="role" bind:value={editData.role} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="organization" class="text-right">Taho</Label>
 				<Input id="organization" bind:value={editData.organization} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="startDate" class="text-right">Aloituspäivä</Label>
 				<Datepicker
 					bind:value={editData.startDate}
@@ -77,11 +77,11 @@
 					placeholder="esim. 24.6.1995"
 				/>
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="endDate" class="text-right">Lopetuspäivä</Label>
 				<Datepicker bind:value={editData.endDate} class="col-span-3" placeholder="esim. 2.3.1998" />
 			</div>
-			<div class="grid grid-cols-4 items-start gap-4">
+			<div class="flex flex-col gap-2">
 				<Label class="pt-2 text-right">Lisätiedot</Label>
 				<div class="col-span-3">
 					<MarkdownEditor bind:value={editData.details} placeholder="Kuvaus tehtävistäsi..." />

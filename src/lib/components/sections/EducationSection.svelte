@@ -53,15 +53,15 @@
 
 	{#snippet editor({ editData, handleSave })}
 		<div class="grid gap-4 py-4">
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="degree" class="text-right">Tutkinto</Label>
 				<Input id="degree" bind:value={editData.degree} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="school" class="text-right">Oppilaitos</Label>
 				<Input id="school" bind:value={editData.school} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="startDate" class="text-right">Aloituspäivä</Label>
 				<Datepicker
 					bind:value={editData.startDate}
@@ -69,11 +69,11 @@
 					placeholder="esim 24.6.1995"
 				/>
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="endDate" class="text-right">Loppupäivä</Label>
 				<Datepicker bind:value={editData.endDate} class="col-span-3" placeholder="esim 2.3.1998" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="level" class="text-right">Taso</Label>
 				<Select type="single" bind:value={editData.level}>
 					<SelectTrigger>
@@ -86,7 +86,7 @@
 					</SelectContent>
 				</Select>
 			</div>
-			<div class="grid grid-cols-4 items-start gap-4">
+			<div class="flex flex-col gap-2">
 				<Label class="pt-2 text-right">Lisätiedot</Label>
 				<div class="col-span-3">
 					<MarkdownEditor

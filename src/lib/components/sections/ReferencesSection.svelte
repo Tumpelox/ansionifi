@@ -50,19 +50,19 @@
 	{/snippet}
 	{#snippet editor({ editData })}
 		<div class="grid gap-4 py-4">
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="name" class="text-right">Nimi</Label>
 				<Input id="name" bind:value={editData.name} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="company" class="text-right">Organisaatio</Label>
 				<Input id="company" bind:value={editData.company} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="phone" class="text-right">Puhelin</Label>
 				<Input id="phone" bind:value={editData.phone} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="email" class="text-right">Sähköposti</Label>
 				<Input id="email" bind:value={editData.email} type="email" class="col-span-3" />
 			</div>

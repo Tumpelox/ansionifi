@@ -79,31 +79,31 @@
 
 	{#snippet editor({ editData, handleSave })}
 		<div class="grid gap-4 py-4">
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="name" class="text-right">Nimi</Label>
 				<Input id="name" bind:value={editData.name} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="birthday" class="text-right">Syntymäaika</Label>
 				<Input id="birthday" bind:value={editData.birthday} type="date" class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="title" class="text-right">Ammattinimike</Label>
 				<Input id="title" bind:value={editData.title} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="email" class="text-right">Sähköposti</Label>
 				<Input id="email" bind:value={editData.email} type="email" class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="phone" class="text-right">Puhelin</Label>
 				<Input id="phone" bind:value={editData.phone} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="address" class="text-right">Osoite</Label>
 				<Input id="address" bind:value={editData.address} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="linkedin" class="text-right">LinkedIn</Label>
 				<Input
 					id="linkedin"
@@ -112,7 +112,7 @@
 					placeholder="https://..."
 				/>
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="github" class="text-right">GitHub</Label>
 				<Input
 					id="github"
@@ -121,7 +121,7 @@
 					placeholder="https://..."
 				/>
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="website" class="text-right">Verkkosivu</Label>
 				<Input
 					id="website"

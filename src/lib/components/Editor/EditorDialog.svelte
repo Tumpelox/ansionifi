@@ -19,7 +19,7 @@
 </script>
 
 <Dialog.Root bind:open>
-	<Dialog.Content class="max-h-[90vh] overflow-y-auto sm:max-w-[600px]">
+	<Dialog.Content class="h-full md:h-fit md:max-h-[90vh] overflow-y-auto md:max-w-[600px]">
 		<Dialog.Header>
 			<Dialog.Title>{title}</Dialog.Title>
 			{#if description}
@@ -27,8 +27,10 @@
 			{/if}
 		</Dialog.Header>
 
-		<div class="grid gap-4 py-4">
-			{@render children()}
+		<div class="py-4 grow">
+			<div class="grid gap-4">
+				{@render children()}
+			</div>
 		</div>
 
 		<Dialog.Footer>

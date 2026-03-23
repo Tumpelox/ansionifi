@@ -50,15 +50,15 @@
 	{/snippet}
 	{#snippet editor({ editData })}
 		<div class="grid gap-4 py-4">
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="jobTitle" class="text-right">Tehtävänimike</Label>
 				<Input id="jobTitle" bind:value={editData.jobTitle} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="employer" class="text-right">Työnantaja</Label>
 				<Input id="employer" bind:value={editData.employer} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="startDate" class="text-right">Aloituspäivä</Label>
 				<Datepicker
 					bind:value={editData.startDate}
@@ -66,11 +66,11 @@
 					placeholder="esim. 24.6.1995"
 				/>
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="endDate" class="text-right">Lopetuspäivä</Label>
 				<Datepicker bind:value={editData.endDate} class="col-span-3" placeholder="esim. 2.3.1998" />
 			</div>
-			<div class="grid grid-cols-4 items-start gap-4">
+			<div class="flex flex-col gap-2">
 				<Label class="pt-2 text-right">Lisätiedot</Label>
 				<div class="col-span-3">
 					<MarkdownEditor

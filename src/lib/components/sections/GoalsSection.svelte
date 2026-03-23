@@ -49,11 +49,11 @@
 	{/snippet}
 	{#snippet editor({ editData })}
 		<div class="grid gap-4 py-4">
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="flex flex-col gap-2">
 				<Label for="interest" class="text-right">Saavutus</Label>
 				<Input id="interest" bind:value={editData.interest} class="col-span-3" />
 			</div>
-			<div class="grid grid-cols-4 items-start gap-4">
+			<div class="flex flex-col gap-2">
 				<Label class="pt-2 text-right">Lisätiedot</Label>
 				<div class="col-span-3">
 					<MarkdownEditor
