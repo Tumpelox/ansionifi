@@ -131,7 +131,11 @@
 	{#if section && section.content.length > 0}
 		<div class={cn(sectionVariants({ layout }))}>
 			{#each section.content as item, index (item.id)}
-				<div use:trackPrint={index === 0 ? key + 'Parent' : null} class={'group/item relative'}>
+				<div
+					use:trackPrint={index === 0 ? key + 'Parent' : null}
+					data-part-of-grid={layout.includes('grid') ? 'true' : 'false'}
+					class={'group/item relative break-inside-avoid h-fit'}
+				>
 					{@render content({ item, handleEdit, handleDelete })}
 
 					{#if multiple}

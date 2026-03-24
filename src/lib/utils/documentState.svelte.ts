@@ -1,7 +1,65 @@
+import { page } from '$app/state';
 import { ContainerKey } from '$lib/types/cv';
 import { SvelteMap } from 'svelte/reactivity';
 
 export const trackedElements: SvelteMap<HTMLElement, string | null> = new SvelteMap();
+
+const DEBUG = false;
+
+const logo = `
+<svg
+	width="100%"
+	height="100%"
+	viewBox="0 0 3226 1072"
+	version="1.1"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xml:space="preserve"
+	style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+	class="h-4"
+>
+	<title>Ansioni</title>
+	<path
+		d="M1113.945,212.256c9.047,175.618 8.839,190.919 -2.617,181.938c-9.036,-7.084 -85.356,-89.009 -97.004,-70.605c-283.259,447.539 -436.331,325.395 -660.179,485.117c-157.591,112.446 -153.701,262.125 -188.618,262.241c-158.535,0.526 -169.702,0.758 -164.612,-11.422c31.457,-75.268 36.101,-72.519 405.814,-935.487c16.908,-39.466 58.094,-27.841 149.289,-27.679c37.069,0.066 33.128,17.241 101.43,175.32c36.835,85.251 86.423,102.11 12.039,158.145c-39.656,29.874 -79.465,61.695 -89.097,40.048c-79.102,-177.793 -77.327,-199.889 -84.102,-185.102c-7.54,16.459 -6.215,16.787 -86.689,209.041c-74.18,177.217 -79.516,197.098 -68.029,186.167c149.989,-142.739 365,-122.249 526.477,-407.946c32.437,-57.389 -15.432,-42.548 -80.625,-55.948c-30.024,-6.171 -27.79,-11.484 -26.081,-13.074c20.62,-19.183 24.849,-12.704 300,-184.224c40.445,-25.212 43.917,-19.025 44.094,-15.295c0.85,17.922 1.054,50.763 8.511,208.763Z"
+		style="fill:var(--secondary);"
+	/>
+	<path
+		d="M966.488,983.35c35.089,82.125 31.323,87.436 24.066,87.467c-164.053,0.7 -166.19,-0.853 -169.009,-6.956c-12.64,-27.371 -156.868,-339.687 -138.624,-350.43c32.546,-19.164 33.247,-15.958 64.758,-35.009c50.022,-30.242 59.879,-64.086 76.411,-25.424c6.824,15.959 13.208,32.103 19.969,48.089c9.587,22.67 10.678,21.674 122.429,282.264Z"
+		style="fill:var(--secondary);"
+	/>
+	<path
+		d="M1543.342,872.667l-97.885,0l0,-211.532c0,-30.224 -5.33,-52.29 -15.991,-66.2c-10.66,-13.91 -25.468,-20.864 -44.423,-20.864c-13.141,0 -26.434,3.321 -39.88,9.964c-13.445,6.643 -25.491,15.778 -36.136,27.405c-10.645,11.627 -18.563,25.03 -23.752,40.211l0,221.017l-97.885,0l0,-379.121l88.423,0l0,70.72c9.785,-16.375 22.272,-30.22 37.46,-41.535c15.196,-11.315 32.579,-19.982 52.15,-26.001c19.578,-6.019 40.458,-9.028 62.639,-9.028c23.893,0 43.43,4.215 58.61,12.646c15.188,8.423 26.876,19.738 35.063,33.945c8.195,14.199 13.845,30.209 16.949,48.029c3.105,17.813 4.657,35.87 4.657,54.17l0,236.174Z"
+		style="fill:var(--primary);fill-rule:nonzero;"
+	/>
+	<path
+		d="M1783.558,879.972c-32.537,0 -63.727,-5.368 -93.57,-16.105c-29.843,-10.737 -55.296,-26.598 -76.358,-47.584l35.04,-63.198c22.797,18.254 45.206,31.765 67.227,40.53c22.029,8.766 43.388,13.149 64.077,13.149c19.053,0 34.222,-3.272 45.507,-9.816c11.284,-6.552 16.927,-16.375 16.927,-29.47c0,-9.131 -3.108,-16.219 -9.325,-21.264c-6.217,-5.053 -15.306,-9.5 -27.268,-13.343c-11.954,-3.85 -26.45,-8.176 -43.487,-12.977c-28.055,-9.139 -51.587,-18.034 -70.594,-26.685c-19.008,-8.652 -33.302,-19.586 -42.882,-32.803c-9.58,-13.225 -14.37,-30.17 -14.37,-50.837c0,-24.996 6.437,-46.507 19.312,-64.534c12.882,-18.034 30.95,-32.096 54.204,-42.185c23.261,-10.097 50.441,-15.146 81.54,-15.146c27.15,0 52.88,4.254 77.192,12.761c24.319,8.499 46.515,22.223 66.588,41.17l-39.766,62.262c-19.266,-15.371 -37.635,-26.552 -55.106,-33.545c-17.471,-7 -35.318,-10.501 -53.542,-10.501c-10.075,0 -19.632,1.198 -28.671,3.595c-9.04,2.397 -16.383,6.354 -22.029,11.87c-5.638,5.517 -8.458,13.308 -8.458,23.375c0,9.116 2.572,16.192 7.716,21.23c5.151,5.037 12.917,9.473 23.296,13.308c10.379,3.835 23.174,8.149 38.385,12.943c30.711,8.636 56.601,17.513 77.671,26.628c21.077,9.108 37.076,20.256 47.995,33.442c10.919,13.187 16.379,31.293 16.379,54.318c0,37.407 -13.91,66.66 -41.729,87.761c-27.819,21.1 -65.12,31.65 -111.901,31.65Z"
+		style="fill:var(--primary);fill-rule:nonzero;"
+	/>
+	<rect
+		x="2016.767"
+		y="489.894"
+		width="97.885"
+		height="382.773"
+		style="fill:var(--primary);fill-rule:nonzero;"
+	/>
+	<path
+		d="M2393.458,879.972c-31.152,0 -59.074,-5.178 -83.766,-15.534c-24.692,-10.356 -45.727,-24.684 -63.107,-42.984c-17.372,-18.3 -30.631,-39.248 -39.777,-62.844c-9.139,-23.604 -13.708,-48.406 -13.708,-74.407c0,-26.488 4.569,-51.53 13.708,-75.126c9.146,-23.604 22.405,-44.556 39.777,-62.856c17.379,-18.3 38.484,-32.628 63.312,-42.984c24.829,-10.356 52.747,-15.534 83.754,-15.534c31.236,0 59.146,5.178 83.732,15.534c24.585,10.356 45.629,24.684 63.13,42.984c17.509,18.3 30.836,39.252 39.983,62.856c9.146,23.596 13.719,48.638 13.719,75.126c0,26.001 -4.573,50.803 -13.719,74.407c-9.146,23.596 -22.405,44.544 -39.777,62.844c-17.372,18.3 -38.419,32.628 -63.141,42.984c-24.715,10.356 -52.755,15.534 -84.12,15.534Zm-100.019,-195.781c0,21.998 4.459,41.485 13.377,58.461c8.918,16.969 20.895,30.235 35.931,39.8c15.043,9.557 31.947,14.336 50.712,14.336c18.764,0 35.733,-4.9 50.906,-14.701c15.173,-9.801 27.218,-23.185 36.136,-40.154c8.918,-16.976 13.377,-36.459 13.377,-58.45c0,-21.519 -4.459,-40.884 -13.377,-58.096c-8.918,-17.212 -20.982,-30.597 -36.193,-40.154c-15.211,-9.565 -32.16,-14.347 -50.848,-14.347c-18.764,0 -35.687,4.9 -50.769,14.701c-15.081,9.801 -27.062,23.189 -35.942,40.165c-8.872,16.969 -13.308,36.448 -13.308,58.439Z"
+		style="fill:var(--primary);fill-rule:nonzero;"
+	/>
+	<path
+		d="M3028.968,872.667l-97.885,0l0,-211.532c0,-30.224 -5.33,-52.29 -15.991,-66.2c-10.66,-13.91 -25.468,-20.864 -44.423,-20.864c-13.141,0 -26.434,3.321 -39.88,9.964c-13.445,6.643 -25.491,15.778 -36.136,27.405c-10.645,11.627 -18.563,25.03 -23.752,40.211l0,221.017l-97.885,0l0,-379.121l88.423,0l0,70.72c9.785,-16.375 22.272,-30.22 37.46,-41.535c15.196,-11.315 32.579,-19.982 52.15,-26.001c19.578,-6.019 40.458,-9.028 62.639,-9.028c23.893,0 43.43,4.215 58.61,12.646c15.188,8.423 26.876,19.738 35.063,33.945c8.195,14.199 13.845,30.209 16.949,48.029c3.105,17.813 4.657,35.87 4.657,54.17l0,236.174Z"
+		style="fill:var(--primary);fill-rule:nonzero;"
+	/>
+	<rect
+		x="3127.882"
+		y="489.894"
+		width="97.885"
+		height="382.773"
+		style="fill:var(--primary);fill-rule:nonzero;"
+	/>
+	<ellipse cx="2064.709" cy="388.148" rx="48.942" ry="48.403" style="fill:var(--secondary);" />
+	<ellipse cx="3175.824" cy="388.148" rx="48.942" ry="48.403" style="fill:var(--secondary);" />
+</svg>`;
 
 export let printConfig = $state({
 	pageHeight: 1122
@@ -42,7 +100,7 @@ const calculateNodePosition = (node: HTMLElement) => {
 	if (!documentContainer) {
 		console.warn('Printtimonitori: Elementtiä id="document" ei löytynyt sivulta.');
 		// Palautetaan nollat fallbackina, jottei sovellus kaadu
-		return { top: 0, bottom: 0, height: 0 };
+		return { top: 0, bottom: 0, height: 0, left: 0, right: 0, width: 0 };
 	}
 
 	const containerRect = documentContainer.getBoundingClientRect();
@@ -52,7 +110,73 @@ const calculateNodePosition = (node: HTMLElement) => {
 	const height = nodeRect.height;
 	const bottom = top + height;
 
-	return { top, bottom, height };
+	const left = nodeRect.left - containerRect.left;
+	const width = nodeRect.width;
+	const right = left + width;
+
+	return { top, bottom, height, left, right, width };
+};
+
+const renderMarginVisualization = (
+	documentContainer: HTMLElement,
+	missingPadding: number,
+	top: number,
+	left: number,
+	color: string = 'red'
+) => {
+	const marginVisualization = document.createElement('div');
+	marginVisualization.style.position = 'absolute';
+	marginVisualization.style.backgroundColor = color;
+	marginVisualization.style.height = `${missingPadding}px`;
+	marginVisualization.style.top = `${top}px`;
+	marginVisualization.style.left = `${left}px`;
+	marginVisualization.style.width = `${20}px`;
+
+	documentContainer.appendChild(marginVisualization);
+
+	return marginVisualization;
+};
+
+const renderPageBreakVisualization = (documentContainer: HTMLElement, pages: number) => {
+	for (let page = 1; page <= pages; page++) {
+		const pageBreakVisualization = document.createElement('div');
+		pageBreakVisualization.style.position = 'absolute';
+		pageBreakVisualization.style.backgroundColor = 'blue';
+		pageBreakVisualization.style.height = '2px';
+		pageBreakVisualization.style.top = `${page * printConfig.pageHeight}px`;
+		pageBreakVisualization.style.left = '0';
+		pageBreakVisualization.style.width = '100%';
+
+		documentContainer.appendChild(pageBreakVisualization);
+	}
+};
+
+const remToPixels = (rem: number) => {
+	return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+};
+
+const getSpacing = () => {
+	const rawSpacing = getComputedStyle(document.documentElement)
+		.getPropertyValue('--spacing')
+		.trim();
+
+	const regex = /^\s*([-+]?(?:\d*\.\d+|\d+))([a-zA-Z%]*)\s*$/;
+
+	const match = rawSpacing.match(regex);
+
+	if (match) {
+		const numericValue = parseFloat(match[1]);
+
+		const unit = match[2];
+
+		if (unit === 'rem') {
+			return remToPixels(numericValue);
+		} else if (unit === 'px') {
+			return numericValue;
+		}
+	}
+
+	return remToPixels(0.25);
 };
 
 export const listenPrint = (mainNode: HTMLElement) => {
@@ -70,13 +194,13 @@ export const listenPrint = (mainNode: HTMLElement) => {
 		'opacity-100',
 		'font-light'
 	);
-	watermark.textContent = 'Ansioni.fi';
-	watermark.style.top = `${printConfig.pageHeight - 22}px`;
-	watermark.style.right = '5px';
+	watermark.setHTMLUnsafe(logo);
+	watermark.style.top = `${printConfig.pageHeight - getSpacing() * 6}px`;
+	watermark.style.right = `${getSpacing() * 2}px`;
 
 	const startPrint = () => {
-		mainNode.classList.add('invisible');
-		mainNode.classList.add('print:visible');
+		// mainNode.classList.add('invisible');
+		// mainNode.classList.add('print:visible');
 		mainNode.style.minWidth = '210mm';
 		mainNode.style.maxWidth = '210mm';
 
@@ -101,10 +225,14 @@ export const listenPrint = (mainNode: HTMLElement) => {
 				return aTop - bTop;
 			});
 
+			const spacing = getSpacing();
+
+			const pageMargin = spacing * 4;
+
 			for (const [node, data] of sortedNodes) {
 				const { parentId } = data;
 
-				const { top, bottom, height } = calculateNodePosition(node);
+				const { top, bottom, height, left, right, width } = calculateNodePosition(node);
 
 				const { startPage, endPage } = calculatePage(top, bottom);
 
@@ -114,20 +242,77 @@ export const listenPrint = (mainNode: HTMLElement) => {
 
 				const pageEnd = endPage * printConfig.pageHeight;
 
-				if (pageEnd < bottom || startPage < endPage) {
+				const highestAllowedCoordinate = (startPage - 1) * printConfig.pageHeight + pageMargin;
+
+				if (pageEnd < bottom || startPage < endPage || highestAllowedCoordinate > top) {
 					if (parentId) {
+						// Marginaali parrentille
+
 						const parent = document.getElementById(parentId);
 
 						if (!parent) return;
 
-						const { top: parentTop, bottom: parentBottom } = calculateNodePosition(parent);
+						const { top: parentTop, left: parentLeft } = calculateNodePosition(parent);
 
-						// parent.style.backgroundColor = 'red';
-						parent.style.marginTop = `calc(var(--spacing) * 4 + ${1122 * startPage - parentTop}px)`;
+						let missingPadding: number;
+
+						if (highestAllowedCoordinate > parentTop) {
+							missingPadding = highestAllowedCoordinate - parentTop;
+						} else {
+							missingPadding = pageMargin + 1122 * startPage - parentTop;
+						}
+
+						if (DEBUG) {
+							renderMarginVisualization(documentContainer, missingPadding, parentTop, parentLeft);
+							parent.style.backgroundColor = 'green';
+						}
+
+						parent.style.marginTop = `${missingPadding}px`;
+
+						if (parentTop + missingPadding + height > mostBottomPoint) {
+							mostBottomPoint = top + missingPadding + height;
+						}
+
 						modifiedElements.add(parent);
 					} else {
-						// node.style.backgroundColor = 'red';
-						node.style.marginTop = `calc(var(--spacing) * 4 + ${1122 * startPage - top}px)`;
+						// Marginaali elementille
+
+						let missingPadding: number;
+
+						const boxHeight = height + 0;
+
+						const partOfGrid = node.dataset.partOfGrid === 'true';
+
+						console.log(node.dataset);
+
+						if (highestAllowedCoordinate > top) {
+							missingPadding = highestAllowedCoordinate - top;
+						} else {
+							if (startPage * printConfig.pageHeight < top + pageMargin + height && partOfGrid) {
+								missingPadding = pageMargin;
+							} else {
+								missingPadding = startPage * printConfig.pageHeight - top + pageMargin;
+							}
+						}
+
+						if (DEBUG) {
+							renderMarginVisualization(documentContainer, missingPadding, top, left);
+							node.style.backgroundColor = 'green';
+							renderMarginVisualization(
+								documentContainer,
+								boxHeight,
+								top + missingPadding,
+								left,
+								'orange'
+							);
+						}
+
+						node.style.marginTop = `${missingPadding}px`;
+
+						if (top + missingPadding + height > mostBottomPoint) {
+							mostBottomPoint = top + missingPadding + height;
+						}
+
 						modifiedElements.add(node);
 					}
 				}
@@ -140,12 +325,22 @@ export const listenPrint = (mainNode: HTMLElement) => {
 
 		mainNode.style.minHeight = `${pages * printConfig.pageHeight}px`;
 
+		if (DEBUG) {
+			renderPageBreakVisualization(documentContainer, pages);
+		}
+
 		mainNode.appendChild(watermark);
 	};
 
 	window.addEventListener('beforeprint', startPrint);
 
 	const removeMargins = () => {
+		if (DEBUG) {
+			if (confirm('Haluatko pitää marginaalit?')) {
+				return;
+			}
+		}
+
 		for (const node of modifiedElements) {
 			// node.style.backgroundColor = '';
 			node.style.marginTop = '';
