@@ -145,7 +145,7 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="flex items-center gap-2 w-full justify-between">
+		<div class="flex items-center gap-2 w-full justify-between print:hidden">
 			<p class="text-sm text-muted-foreground italic">
 				Lisää {String(title || 'kohteita').toLowerCase()}
 			</p>
@@ -156,7 +156,7 @@
 	{/if}
 
 	<div
-		class="absolute top-0 right-2 flex gap-2 group-hover:opacity-100 md:opacity-0 transition-opacity"
+		class="absolute top-0 right-2 flex gap-2 group-hover:opacity-100 md:opacity-0 transition-opacity print:hidden"
 	>
 		{#if !multiple && section && section.content.length > 0}
 			<Button
